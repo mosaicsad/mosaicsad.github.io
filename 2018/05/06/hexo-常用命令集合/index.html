@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="mosaicsad">
 <meta property="og:description" content="Hexo 随笔@[hexo] Hexo 在书写博客必不可少的工具。那么既然是工具肯定就有很多的使用技巧。  Hexo 建立新的文档1hexo new &quot;name&quot; name 填写新文件的名字，比如：1hexo new &quot;example&quot; 那么在hexo/source/_posts/ 里面就会生成新的.md文件 属性   Setting Description Default     layout">
 <meta property="og:locale" content="zh-Hans -en">
-<meta property="og:updated_time" content="2018-05-07T04:14:20.839Z">
+<meta property="og:updated_time" content="2018-05-07T04:25:18.957Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hexo 常用命令集合">
 <meta name="twitter:description" content="Hexo 随笔@[hexo] Hexo 在书写博客必不可少的工具。那么既然是工具肯定就有很多的使用技巧。  Hexo 建立新的文档1hexo new &quot;name&quot; name 填写新文件的名字，比如：1hexo new &quot;example&quot; 那么在hexo/source/_posts/ 里面就会生成新的.md文件 属性   Setting Description Default     layout">
@@ -328,6 +328,17 @@
 
           
           
+             <span id="/2018/05/06/hexo-常用命令集合/" class="leancloud_visitors" data-flag-title="hexo 常用命令集合">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
 
           
 
@@ -406,7 +417,7 @@
 <p>###添加统计功能</p>
 <p>####创建Lean Cloud 应用：<br><a href="https://leancloud.cn/" target="_blank" rel="noopener">LeanCloud</a>平台提供一站式后端云服务，从数据存储、实时聊天、消息推送到移动统计，涵盖应用开发的多方面后端需求。<br>首先，申请账号。<br>我们只用到它的数据存储部分,具体步骤如下：</p>
 <p>首先到『控制台』创建一个应用，名字随便取。<br>点击左侧边栏的『存储』选项，选择『创建Class』，取名为”Counter“。<br>点击新建应用右上角的齿轮，在『应用Key』选项里得到APP ID 和 APP Key，在后面会用到。</p>
-<p>####修改<code>_config.yml</code><br>添加appid 和 appkey 即可<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"># Valine.</span><br><span class="line"># You can get your appid and appkey from https://leancloud.cn</span><br><span class="line"># more info please open https://valine.js.org</span><br><span class="line">valine:</span><br><span class="line">  enable: <span class="literal">false</span></span><br><span class="line">  appid:  # your leancloud application appid</span><br><span class="line">  appkey:  # your leancloud application appkey</span><br><span class="line">  notify: false # mail notifier , https://github.com/xCss/Valine/wiki</span><br><span class="line">  verify: false # Verification code</span><br><span class="line">  placeholder: Just go go # comment box placeholder</span><br><span class="line">  avatar: mm # gravatar style</span><br><span class="line">  guest_info: nick,mail,link # custom comment header</span><br><span class="line">  pageSize: 10 # pagination size</span><br></pre></td></tr></table></figure></p>
+<p>####修改<code>_config.yml</code><br>添加appid 和 appkey 即可<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">leancloud_visitors:</span><br><span class="line">  enable: <span class="literal">true</span></span><br><span class="line">  app_id: '你的app_id' #&lt;app_id&gt;</span><br><span class="line">  app_key: '你的app_key' #&lt;app_key&gt;</span><br></pre></td></tr></table></figure></p>
 <p>###设置 Web 安全域名<br>在你所创建的应用的 设置-&gt;安全中心 中设置 Web 安全域名 添加你的域名到 Web 安全域名中（若本地服务也想看到访问量，添加 <a href="http://localhost:4000/）" target="_blank" rel="noopener">http://localhost:4000/）</a></p>
 <hr>
 
@@ -818,6 +829,113 @@
 
 
   
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("aa1192iBQAR7HeuMh406D4UO-MdYXbMMI", "JmpgqkuHjg0LMkrKMsRg1NRU");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
 
   
 
